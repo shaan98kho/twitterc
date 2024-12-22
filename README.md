@@ -8,9 +8,9 @@ Built with:
 - **SCSS** for modular and maintainable styling.
 
 
-## API
+### API
 
 This project uses Mockoon to simulate a backend API. Will include steps to set up later on.
 
-🚧 Work in Progress 🚧
+### 🚧 Work in Progress 🚧
 This project is currently under development. Stay tuned for more updates!
