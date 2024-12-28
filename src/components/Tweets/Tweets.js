@@ -2,7 +2,7 @@ import React from "react";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { setTweets } from "../../features/tweets/tweetsSlice";
+import { fetchTweets } from "../../features/fetchThunks";
 
 //icons
 import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
@@ -10,23 +10,13 @@ import { FaRegComment } from "react-icons/fa";
 import { FaRetweet } from "react-icons/fa6";
 
 
-
-
 export default function Tweet({}) {
     const dispatch = useDispatch()
     const tweets = useSelector((state) => state.tweets)
     
-
-    function fetchTweetsData() {
-        fetch("http://localhost:3000/tweets")
-        .then(res => res.json())
-        .then(data => dispatch(setTweets(data.tweets)))
-        .catch(error => console.log("Failed to fetch data:", error))
-    }
-
     React.useEffect(() => {
-        fetchTweetsData()
-    })
+        dispatch(fetchTweets())
+    }, [dispatch])
 
     return <>
         {

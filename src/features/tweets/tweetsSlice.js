@@ -5,16 +5,17 @@ const tweetsSlice = createSlice({
     initialState: [],
     reducers: {
         setTweets: (state, action) => {
-            return action.payload;
+            return action.payload; // Update tweets state with new data
         },
         addTweet: (state, action) => {
-            state.push(action.payload);
+            state.push(action.payload); // Edit tweets
         },
         likeTweet: (state, action) => {
             const tweet = state.find((twt) => twt.id === action.payload);
             if (tweet) {
                 tweet.likes += 1;
             }
+            // Increase tweet like counts
         }
     }
 })
