@@ -2,9 +2,9 @@ import React from "react";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTweets, fetchUsers } from "../../features/fetchThunks";
+import { fetchTweets, fetchUsers, updateLikes } from "../../features/thunks";
 import { selectTweetsWithUserData } from "../../selectors/tweetsSelector";
-import { likeTweet } from "../../features/tweets/tweetsSlice";
+// import { likeTweet } from "../../features/tweets/tweetsSlice";
 
 //icons
 import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
@@ -12,9 +12,7 @@ import { FaRegComment } from "react-icons/fa";
 import { FaRetweet } from "react-icons/fa6";
 import { CiMenuKebab } from "react-icons/ci";
 
-
-
-export default function Tweet({}) {
+export default function Tweet() {
     const dispatch = useDispatch()
     
     
@@ -25,10 +23,13 @@ export default function Tweet({}) {
 
     const tweetsWithUserData = useSelector(selectTweetsWithUserData)
 
-    const handleLike = (tweetID) => {
-        dispatch(likeTweet(tweetID))
+    console.log(tweetsWithUserData)
 
-        // console.log(tweetsWithUserData)
+    const handleLike = (tweetId, currentLikes, isCurrentlyLiked) => {
+        const updatedLikes = isCurrentlyLiked ? currentLikes - 1 : currentLikes + 1
+        const updatedIsLiked = !isCurrentlyLiked
+
+        dispatch(updateLikes({ tweetId, updatedLikes, isLiked: updatedIsLiked}))
     }
 
 
@@ -37,7 +38,7 @@ export default function Tweet({}) {
             tweetsWithUserData?.map((tweet) => {
                 return <div className="tweet">
                         <div className="user-profile">
-                            <img src={tweet.user?.profilePic}></img>
+                            <img src={tweet.user?.profilePic} alt="User profile"></img>
                         </div>
                         <div>
                             <div className="tweet-header">
@@ -59,7 +60,10 @@ export default function Tweet({}) {
                                     <div><FaRetweet /></div>
                                     {tweet.retweets}
                                 </button>
-                                <button className="tweet-action-btn" onClick={() => handleLike(tweet.tid)}>
+                                <button 
+                                    className="tweet-action-btn"
+                                    onClick={() => handleLike(tweet.id, tweet.likes, tweet.isLiked)}
+                                >
                                     <div>{tweet.isLiked ? <IoIosHeart/> : <IoIosHeartEmpty />}</div>
                                     {tweet.likes}
                                 </button>

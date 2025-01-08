@@ -11,16 +11,14 @@ const tweetsSlice = createSlice({
             state.push(action.payload); // Edit tweets
         },
         likeTweet: (state, action) => {
-            const tweet = state.find((twt) => twt.id === action.payload);
+            const { tweetId, updatedLikes, isLiked } = action.payload;
+            const tweet = state.find((twt) => twt.id === tweetId);
 
             console.log(action.payload)
             if (tweet) {
-                tweet.isLiked = !tweet.isLiked;
+                tweet.likes = updatedLikes
 
-                if (tweet.isLiked)
-                tweet.likes -= 1;
-                else
-                tweet.likes += 1;
+                tweet.isLiked = isLiked
             }
             // Increase tweet like counts
         }
