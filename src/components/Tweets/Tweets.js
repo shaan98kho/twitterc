@@ -23,11 +23,13 @@ export default function Tweet() {
 
     const tweetsWithUserData = useSelector(selectTweetsWithUserData)
 
-    console.log(tweetsWithUserData)
-
     const handleLike = (tweetId, currentLikes, isCurrentlyLiked) => {
+        console.log(tweetId, currentLikes, isCurrentlyLiked)
+
         const updatedLikes = isCurrentlyLiked ? currentLikes - 1 : currentLikes + 1
         const updatedIsLiked = !isCurrentlyLiked
+
+        console.log(updatedLikes, updatedIsLiked)
 
         dispatch(updateLikes({ tweetId, updatedLikes, isLiked: updatedIsLiked}))
     }
@@ -36,7 +38,7 @@ export default function Tweet() {
     return <>
         {
             tweetsWithUserData?.map((tweet) => {
-                return <div className="tweet">
+                return <div className="tweet" key={tweet.tid}>
                         <div className="user-profile">
                             <img src={tweet.user?.profilePic} alt="User profile"></img>
                         </div>
@@ -62,7 +64,10 @@ export default function Tweet() {
                                 </button>
                                 <button 
                                     className="tweet-action-btn"
-                                    onClick={() => handleLike(tweet.id, tweet.likes, tweet.isLiked)}
+                                    onClick={() => {
+                                        console.log(tweet.tid)
+                                        handleLike(tweet.tid, tweet.likes, tweet.isLiked)
+                                    }}
                                 >
                                     <div>{tweet.isLiked ? <IoIosHeart/> : <IoIosHeartEmpty />}</div>
                                     {tweet.likes}

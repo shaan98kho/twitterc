@@ -4,8 +4,6 @@ export const fetchTweetsFromApi = async () => {
         throw new Error("Failed to fetch tweets")
     }
     const data = await res.json()
-    console.log(data)
-    
 
     return data.tweets
 }
@@ -36,5 +34,7 @@ export const updateLikesIntoApi = async ({ tweetId, updatedLikes, isLiked }) => 
         throw new Error("Failed")
     }
 
-    const date = await res.json();
+    const data = await res.json();
+
+    return data
 }

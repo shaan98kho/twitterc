@@ -12,13 +12,15 @@ const tweetsSlice = createSlice({
         },
         likeTweet: (state, action) => {
             const { tweetId, updatedLikes, isLiked } = action.payload;
-            const tweet = state.find((twt) => twt.id === tweetId);
+            const tweet = state.find((twt) => twt.tid === tweetId);
 
-            console.log(action.payload)
             if (tweet) {
                 tweet.likes = updatedLikes
-
                 tweet.isLiked = isLiked
+
+                console.log("reducers tweet", tweet)
+            }else {
+                console.log("huh???")
             }
             // Increase tweet like counts
         }
