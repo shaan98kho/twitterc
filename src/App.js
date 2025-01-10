@@ -1,18 +1,23 @@
 import './App.scss';
 import React from "react";
-import Tweets from "./components/Tweets/Tweets";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Tweets from "./components/Tweets/Tweets";
+import MainLayout from './components/Layout/MainLayout';
+import ContentLayout from './components/Layout/ContentLayout';
+
+
 
 function App() {
 
   return (
     <BrowserRouter>
       <Routes>        
-        <Route path="/" element={<div>Default route</div>}/>
-        <Route path="/home" element={<>
-          <div>Tweets components</div>
-          <Tweets />
-        </>}/>
+        <Route element={<MainLayout />}>          
+            <Route element={<ContentLayout />}>
+              <Route path="/" element={<Tweets />}/>
+            </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

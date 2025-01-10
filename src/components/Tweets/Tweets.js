@@ -8,13 +8,12 @@ import { selectTweetsWithUserData } from "../../selectors/tweetsSelector";
 
 //icons
 import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
-import { FaRegComment } from "react-icons/fa";
+import { FaRegComment, FaUserCircle } from "react-icons/fa";
 import { FaRetweet } from "react-icons/fa6";
 import { CiMenuKebab } from "react-icons/ci";
 
 export default function Tweet() {
-    const dispatch = useDispatch()
-    
+    const dispatch = useDispatch()    
     
     React.useEffect(() => {
         dispatch(fetchTweets())
@@ -40,9 +39,11 @@ export default function Tweet() {
             tweetsWithUserData?.map((tweet) => {
                 return <div className="tweet" key={tweet.tid}>
                         <div className="user-profile">
-                            <img src={tweet.user?.profilePic} alt="User profile"></img>
+                            {/* <img src={tweet.user?.profilePic} alt="User 
+                            profile"></img> */}
+                            <FaUserCircle />
                         </div>
-                        <div>
+                        <div className="tweet-content">
                             <div className="tweet-header">
                                 <div className="user-details">
                                     <span className="user-name">{tweet.user.name}</span>
@@ -55,12 +56,12 @@ export default function Tweet() {
                             <div className="tweet-body">{tweet.tweetText}</div>
                             <div className="tweet-actions">
                                 <button className="tweet-action-btn">
-                                    <div><FaRegComment /></div>
+                                    <div className="tweet-action-icon"><FaRegComment /></div>
                                     <span>{tweet.replies.length}</span>
                                 </button>
                                 <button className="tweet-action-btn">
-                                    <div><FaRetweet /></div>
-                                    {tweet.retweets}
+                                    <div className="tweet-action-icon"><FaRetweet /></div>
+                                    <span>{tweet.retweets}</span>
                                 </button>
                                 <button 
                                     className="tweet-action-btn"
@@ -69,8 +70,8 @@ export default function Tweet() {
                                         handleLike(tweet.tid, tweet.likes, tweet.isLiked)
                                     }}
                                 >
-                                    <div>{tweet.isLiked ? <IoIosHeart/> : <IoIosHeartEmpty />}</div>
-                                    {tweet.likes}
+                                    <div className="tweet-action-icon">{tweet.isLiked ? <IoIosHeart/> : <IoIosHeartEmpty />}</div>
+                                    <span>{tweet.likes}</span>
                                 </button>
                             </div>
                         </div>

@@ -1,17 +1,125 @@
+* {
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+.main-section {
+  display: flex;
+  align-items: start;
+}
+
+.content-section {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.middle {
+  max-width: 600px;
+  width: 100%;
+}
+
+.sidenav {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  > * {
+    cursor: pointer;
+  }
+
+  .logo {
+    padding: 12px;
+  }
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 12px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    &.active {
+      font-weight: 700;
+    }
+  }
+}
+
 .tweet {
   font-size: 11px;
   display: flex;
   align-items: flex-start;
   gap: 8px;
+  padding: 0 16px;
+  font-size: 15px;
+}
+
+.user-profile {
+  flex-basis: 40px;
+
+  svg {
+    width: 35px;
+    height: 100%;
+  }
 }
 
 .tweet-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 4px;
+}
+
+.user-details {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tweet-menu {
+  transform: rotate(90deg);
+  cursor: pointer;
+}
+
+.tweet-content {
+  width: 100%;
 }
 
 .tweet-actions {
   display: flex;
   align-items: center;
+  margin-top: 12px;
+}
+
+.tweet-action-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+.tweet-action-icon {
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 1.25em;
+    height: 1.25em;
+  }
 }
