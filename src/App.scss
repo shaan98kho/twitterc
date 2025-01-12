@@ -6,6 +6,7 @@
 .main-section {
   display: flex;
   align-items: start;
+  justify-content: center;
 }
 
 .content-section {
@@ -20,7 +21,7 @@
   width: 100%;
 }
 
-.sidenav {
+.sidenav-wrap {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -34,22 +35,71 @@
   }
 }
 
-nav ul {
+.sidenav > ul {
   list-style: none;
   padding: 0;
   margin: 0;
+
+  a {
+    text-decoration: none;
+
+    &.active {
+      font-weight: 700;
+    }
+  }
 
   li {
     padding: 12px;
     font-size: 20px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
+  }
+}
 
-    &.active {
-      font-weight: 700;
+.topnav {
+  position: sticky;
+
+  ul {
+    display: flex;
+    list-style: none;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  
+    li {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      cursor: pointer;
+
+      &.active {
+        position: relative;
+        font-weight: 700;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          height: 2px;
+          width: 100%;
+          left: 0;
+          transform: scaleX(0.15);
+        }
+      }
     }
   }
+}
+
+.input-wrap {
+  
+}
+
+.input-field {
+  width: 100%;
+  position: relative;
+  padding: 12px;
 }
 
 .tweet {
@@ -57,7 +107,7 @@ nav ul {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  padding: 0 16px;
+  padding: 12px;
   font-size: 15px;
 }
 

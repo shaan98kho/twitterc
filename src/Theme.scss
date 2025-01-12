@@ -1,0 +1,57 @@
+body {
+    background: #000;
+    color: rgb(231, 233, 234);
+}
+
+.middle {
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-color: #3a3a3a;
+}
+
+.sidenav ul {
+    a {
+        color: rgb(231, 233, 234);
+
+        &.active {
+            color: #fff;
+        }
+    }
+}
+
+.topnav ul {
+    border-bottom: 1px solid #3a3a3a;
+    li {
+        &.active {
+            color: #fff;
+
+            &::after {
+                background: #ffc0cb;
+            }
+        }
+    }
+}
+
+.input-field {
+    background: #000;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #3a3a3a;
+    color: #fff;
+
+    &::placeholder {
+        color: #3a3a3a;
+    }
+}
+
+.tweet {
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.tweet-action-btn {
+    color: #3a3a3a;
+
+    &.like.active {
+        color: rgb(249, 24, 128);
+    }
+}

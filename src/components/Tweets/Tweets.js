@@ -55,16 +55,16 @@ export default function Tweet() {
                             </div>
                             <div className="tweet-body">{tweet.tweetText}</div>
                             <div className="tweet-actions">
-                                <button className="tweet-action-btn">
+                                <button className="tweet-action-btn comment">
                                     <div className="tweet-action-icon"><FaRegComment /></div>
                                     <span>{tweet.replies.length}</span>
                                 </button>
-                                <button className="tweet-action-btn">
+                                <button className="tweet-action-btn retweet">
                                     <div className="tweet-action-icon"><FaRetweet /></div>
                                     <span>{tweet.retweets}</span>
                                 </button>
                                 <button 
-                                    className="tweet-action-btn"
+                                    className={`tweet-action-btn like ${tweet.isLiked && "active"}`}
                                     onClick={() => {
                                         console.log(tweet.tid)
                                         handleLike(tweet.tid, tweet.likes, tweet.isLiked)

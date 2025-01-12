@@ -1,4 +1,5 @@
 import './App.scss';
+import './Theme.scss';
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -13,7 +14,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>        
-        <Route element={<MainLayout />}>          
+        <Route element={<MainLayout />}>
             <Route element={<ContentLayout />}>
               <Route path="/" element={<Tweets />}/>
             </Route>

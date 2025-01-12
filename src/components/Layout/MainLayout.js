@@ -6,7 +6,7 @@ const MenuContext = React.createContext()
 
 export default function MainLayout() {
     return <>
-        <MenuContext.Provider>
+        <MenuContext.Provider value="">
             <div className="main-section">
                 <Sidenav />
                 <div className="main-content">
