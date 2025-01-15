@@ -38,3 +38,7 @@ export const updateLikesIntoApi = async ({ tweetId, updatedLikes, isLiked }) => 
 
     return data
 }
+
+export const postTweet = async ({tweetText}) => {
+    // const res = await fetch()
+}

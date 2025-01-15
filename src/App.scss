@@ -54,6 +54,19 @@
     display: flex;
     align-items: center;
     gap: 10px;
+
+    span {
+      @media screen and (max-width: 1060) {
+        display: none;
+      }
+    }
+
+    svg {
+      @media screen and (max-width: 1060) {
+        width: 26.25px;
+        height: 26.25px;
+      }
+    }
   }
 }
 
@@ -73,6 +86,7 @@
       text-align: center;
       padding: 12px;
       cursor: pointer;
+      transition: 0.15s all ease-in-out;
 
       &.active {
         position: relative;
@@ -93,13 +107,61 @@
 }
 
 .input-wrap {
-  
+  display: flex;
+  align-items: center;
+  align-items: start;
+  padding: 12px;
+  gap: 8px;
+}
+
+.input-current-user {
+  svg {
+    width: 35px;
+    height: 100%;
+  }
+}
+
+.input-box {
+  width: 100%;
 }
 
 .input-field {
   width: 100%;
   position: relative;
-  padding: 12px;
+  padding-bottom: 12px;
+}
+
+.input-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-action-btn-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.input-action-btn {
+  transition: 0.15s all ease-in-out;
+  border-radius: 50%;
+  padding: 5px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 19px;
+  transition: 0.15s all ease-in-out;
 }
 
 .tweet {

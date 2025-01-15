@@ -10,9 +10,7 @@ export default function ContentLayout() {
             <div className="middle">
                 <HomeTopNav listItems={["For You", "Following"]}/>
                 <div className="middle-content">
-                    <div className="input-wrap">
-                        <InputBox />
-                    </div>
+                    <InputBox />
                     <div>
                         <Outlet />
                     </div>

@@ -1,3 +1,7 @@
+$mainPink: darken(#ffc0cb, 12%);
+$secondaryPink: darken(#ffc0cb, 5%);
+$tertiaryPink: #ffc0cb;
+
 body {
     background: #000;
     color: rgb(231, 233, 234);
@@ -26,21 +30,53 @@ body {
             color: #fff;
 
             &::after {
-                background: #ffc0cb;
+                background: $mainPink;
             }
         }
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
     }
+}
+
+.input-wrap {
+    border-bottom: 1px solid #3a3a3a;
 }
 
 .input-field {
     background: #000;
     outline: none;
     border: none;
-    border-bottom: 1px solid #3a3a3a;
     color: #fff;
 
     &::placeholder {
         color: #3a3a3a;
+    }
+}
+
+.input-action-btn {
+    background: none;
+    outline: none;
+    border: none;
+    color: $mainPink;
+
+    &:hover {
+        background: rgba($tertiaryPink, 0.2);
+    }
+}
+
+.main-button {
+    outline: none;
+    border: none;
+
+    &.active {
+        background: $mainPink;
+        color: #fff;
+    }
+
+    &:hover {
+        background: darken($mainPink, 5%);
     }
 }
 
