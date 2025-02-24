@@ -70,6 +70,35 @@
   }
 }
 
+.sidenav-bottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px
+}
+
+.sidenav-user-pic svg {
+  width: 35px;
+  height: 100%;
+}
+
+.current-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.current-user-info {
+  p {
+    margin: 0;
+  }
+}
+
+.current-user-menu svg {
+  transform: rotate(90deg);
+}
+
 .topnav {
   position: sticky;
 
@@ -182,6 +211,10 @@
   }
 }
 
+.user-name {
+  font-weight: 700;
+}
+
 .tweet-header {
   display: flex;
   align-items: center;
@@ -193,6 +226,17 @@
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.tweet-timestamp {
+  position: relative;
+  padding-left: 8px;
+
+  &::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+  }
 }
 
 .tweet-menu {
@@ -219,10 +263,23 @@
   align-items: center;
   justify-content: flex-start;
   gap: 4px;
+  position: relative;
+  transition: all 0.15s ease-in-out;
 
   &:focus,
   &:active {
     outline: none;
+  }
+
+  &:hover {
+    &::after {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      left: 1px;
+    }
   }
 }
 
@@ -234,4 +291,8 @@
     width: 1.25em;
     height: 1.25em;
   }
+}
+
+.explore {
+  width: 600px;
 }

@@ -1,4 +1,5 @@
-import { fetchTweetsFromApi, fetchUsersFromApi, updateLikesIntoApi } from "../services/api";
+import { fetchCurrentUserFromApi, fetchTweetsFromApi, fetchUsersFromApi, updateLikesIntoApi, postTweetToApi } from "../services/api";
+import { setCurrentUser } from "./currentUser/currentUserSlice";
 import { setTweets, likeTweet } from "./tweets/tweetsSlice";
 import { setUsers } from "./users/usersSlice";
 
@@ -9,15 +10,25 @@ export const fetchTweets = () => async (dispatch) => {
         const tweets = await fetchTweetsFromApi() // Call API service
         dispatch(setTweets(tweets))
     } catch(e) {
-        console.error("Error fetching tweets:". e)
+        console.error("Error fetching tweets:".e)
     }
 }
+
 export const fetchUsers = () => async (dispatch) => {
     try {
         const users = await fetchUsersFromApi() // Call API service
         dispatch(setUsers(users))
     } catch(e) {
-        console.error("Error fetching tweets:". e)
+        console.error("Error fetching tweets:".e)
+    }
+}
+
+export const fetchCurrentUser = () => async (dispatch) => {
+    try {
+        const currentUser = await fetchCurrentUserFromApi() // Call API service
+        dispatch(setCurrentUser(currentUser))
+    } catch(e) {
+        console.error("Error fetching tweets:".e)
     }
 }
 
@@ -27,6 +38,15 @@ export const updateLikes = ({ tweetId, updatedLikes, isLiked }) => async (dispat
         const updatedTweetLikes = await updateLikesIntoApi({tweetId, updatedLikes, isLiked})
         dispatch(likeTweet({tweetId, updatedLikes, isLiked}))
     } catch(e) {
-        console.error("Error updating likes:". e)
+        console.error("Error updating likes:".e)
+    }
+}
+
+export const postTweet = ({cuid, inputtedTweetText}) => async (dispatch) => {
+    try {
+        const tweetText = await postTweetToApi({inputtedTweetText, cuid})
+        
+    } catch(e) {
+        console.error("Error posting tweet".e)
     }
 }

@@ -82,12 +82,69 @@ body {
 
 .tweet {
     border-bottom: 1px solid #3a3a3a;
+
+    &:last-child {
+        border-bottom: none;
+    }
 }
 
 .tweet-action-btn {
     color: #3a3a3a;
 
-    &.like.active {
-        color: rgb(249, 24, 128);
+    &.like {
+        &:hover {
+            color: rgb(249, 24, 128);
+
+            &::after {
+                background: rgba(249, 24, 128, 0.1);
+            }
+        }
+        &.active {
+            color: rgb(249, 24, 128);
+        }
     }
+
+    &.retweet {
+        &:hover {
+            color: rgb(0, 186, 124);
+
+            &::after {
+                background: rgba(0, 186, 124, 0.1);
+            }
+        }
+        &.active {
+            color: rgb(0, 186, 124);
+        }
+    }
+
+    &.comment {
+        &:hover {
+            color: $tertiaryPink;
+            
+            &::after {
+                background: rgba(255,192,203, 0.1);
+            }
+        }
+        &.active {
+            color: $tertiaryPink;
+        }
+    }
+}
+
+.user-name {
+    color: #fff;
+}
+
+.user-handles,
+.tweet-timestamp {
+    color: #616161;
+}
+
+.current-user-info {
+    color: #cacaca;
+}
+
+.current-user-handle,
+.current-user-menu {
+    color: #616161;
 }

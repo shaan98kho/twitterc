@@ -11,4 +11,4 @@ export const selectTweetsWithUserData = createSelector(
             user:  users.find((user) => user.uuid === tweet.uuid)
         }))
     }
-)
+)   

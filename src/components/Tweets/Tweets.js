@@ -33,6 +33,7 @@ export default function Tweet() {
         dispatch(updateLikes({ tweetId, updatedLikes, isLiked: updatedIsLiked}))
     }
 
+    console.log()
 
     return <>
         {
@@ -47,7 +48,8 @@ export default function Tweet() {
                             <div className="tweet-header">
                                 <div className="user-details">
                                     <span className="user-name">{tweet.user.name}</span>
-                                    <span className="user-handles">{tweet.user.handle}</span>                                
+                                    <span className="user-handles">{tweet.user.handle}</span>   
+                                    <span className="tweet-timestamp">{tweet.timeStamp}</span>                             
                                 </div>
                                 <div className="tweet-menu">
                                     <CiMenuKebab />
