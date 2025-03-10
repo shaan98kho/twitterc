@@ -33,8 +33,6 @@ export default function Tweet() {
         dispatch(updateLikes({ tweetId, updatedLikes, isLiked: updatedIsLiked}))
     }
 
-    console.log()
-
     return <>
         {
             tweetsWithUserData?.map((tweet) => {
@@ -68,7 +66,6 @@ export default function Tweet() {
                                 <button 
                                     className={`tweet-action-btn like ${tweet.isLiked && "active"}`}
                                     onClick={() => {
-                                        console.log(tweet.tid)
                                         handleLike(tweet.tid, tweet.likes, tweet.isLiked)
                                     }}
                                 >

@@ -1,28 +1,30 @@
 import './App.scss';
 import './Theme.scss';
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { 
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements
+} from "react-router-dom";
 
 import Tweets from "./components/Tweets/Tweets";
-import MainLayout from './components/Layout/MainLayout';
+import MainLayout, { loader as mainLayoutLoader } from './components/Layout/MainLayout';
 import ContentLayout from './components/Layout/ContentLayout';
 import Explore from './pages/Explore';
 
-
+const router = createBrowserRouter(createRoutesFromElements(
+              <Route element={<MainLayout />} loader={mainLayoutLoader}>
+                  <Route element={<ContentLayout />}>
+                    <Route path="/" element={<Tweets />} loader={()=> ({})}/>
+                    <Route path="/search" element={<Explore />} loader={()=> ({})}/>
+                  </Route>
+              </Route>
+))
 
 function App() {
-
   return (
-    <BrowserRouter>
-      <Routes>        
-        <Route element={<MainLayout />}>
-            <Route element={<ContentLayout />}>
-              <Route path="/" element={<Tweets />}/>
-              <Route path="/search" element={<Explore />}/>
-            </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <RouterProvider router={router} />
   );
 }
 

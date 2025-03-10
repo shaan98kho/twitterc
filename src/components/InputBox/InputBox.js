@@ -1,5 +1,11 @@
 import React from "react";
 import MainButton from "../Buttons/MainButton";
+
+//redux
+import { useDispatch, useSelector } from "react-redux";
+import {  } from "../../services/api";
+
+//icons
 import { FaUserCircle } from "react-icons/fa";
 import { GrGallery, GrLocation } from "react-icons/gr";
 import { BsEmojiSmile } from "react-icons/bs";

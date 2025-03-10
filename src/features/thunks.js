@@ -9,8 +9,10 @@ export const fetchTweets = () => async (dispatch) => {
     try {
         const tweets = await fetchTweetsFromApi() // Call API service
         dispatch(setTweets(tweets))
+        return tweets
     } catch(e) {
-        console.error("Error fetching tweets:".e)
+        console.error("Error fetching tweets:",e)
+        throw e
     }
 }
 
@@ -18,8 +20,10 @@ export const fetchUsers = () => async (dispatch) => {
     try {
         const users = await fetchUsersFromApi() // Call API service
         dispatch(setUsers(users))
+        return users
     } catch(e) {
-        console.error("Error fetching tweets:".e)
+        console.error("Error fetching tweets:",e)
+        throw e
     }
 }
 
@@ -27,8 +31,10 @@ export const fetchCurrentUser = () => async (dispatch) => {
     try {
         const currentUser = await fetchCurrentUserFromApi() // Call API service
         dispatch(setCurrentUser(currentUser))
+        return currentUser
     } catch(e) {
-        console.error("Error fetching tweets:".e)
+        console.error("Error fetching tweets:",e)
+        throw e
     }
 }
 
@@ -47,6 +53,7 @@ export const postTweet = ({cuid, inputtedTweetText}) => async (dispatch) => {
         const tweetText = await postTweetToApi({inputtedTweetText, cuid})
         
     } catch(e) {
-        console.error("Error posting tweet".e)
+        console.error("Error posting tweet",e)
+        throw e
     }
 }

@@ -1,9 +1,10 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentUser } from "../../features/thunks";
+import store from "../../store";
 
 //icons
 import { BsTwitterX } from "react-icons/bs";
@@ -13,19 +14,12 @@ import { RiNotificationLine } from "react-icons/ri";
 import { FaUserCircle } from "react-icons/fa";
 import { CiMenuKebab } from "react-icons/ci";
 
+export async function loader() {
+    const result = await store.dispatch(fetchCurrentUser())
+    return result
+}
 
-
-export default function Sidenav() {
-    const dispatch = useDispatch()
-
-    React.useEffect(() => {
-        dispatch(fetchCurrentUser())
-    }, [dispatch])
-
-    const currentUser = useSelector((state) => state.currentUser)
-
-    // console.log(currentUser[0].name)
-
+export default function Sidenav({currentUser}) {
     const activeStyle = ({isActive}) => {
         return isActive ? "active" : null
     }
