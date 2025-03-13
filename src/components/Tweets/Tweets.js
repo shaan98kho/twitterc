@@ -3,7 +3,9 @@ import React from "react";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTweets, fetchUsers, updateLikes } from "../../features/thunks";
-import { selectTweetsWithUserData } from "../../selectors/tweetsSelector";
+// import { selectTweetsWithUserData } from "../../selectors/tweetsSelector";
+import store from "../../store";
+import { useLoaderData } from "react-router-dom";
 // import { likeTweet } from "../../features/tweets/tweetsSlice";
 
 //icons
@@ -12,24 +14,31 @@ import { FaRegComment, FaUserCircle } from "react-icons/fa";
 import { FaRetweet } from "react-icons/fa6";
 import { CiMenuKebab } from "react-icons/ci";
 
-export default function Tweet() {
-    const dispatch = useDispatch()    
+export async function loader() {
+    const tweetResults = await store.dispatch(fetchTweets())
+    const userResults = await store.dispatch(fetchUsers())
     
-    React.useEffect(() => {
-        dispatch(fetchTweets())
-        dispatch(fetchUsers())
-    }, [dispatch])
+    return {
+        tweets: tweetResults,
+        users: userResults
+    }
+}
 
-    const tweetsWithUserData = useSelector(selectTweetsWithUserData)
+export default function Tweet() {
+    const dispatch = useDispatch()
+    const { tweets, users } = useLoaderData()
+
+    // const tweetsWithUserData = useSelector(selectTweetsWithUserData) // note** removed as loader is implemented
+    const tweetsWithUserData = tweets?.map((tweet) => ({
+        ...tweet,
+        user:  users.find((user) => user.uuid === tweet.uuid)
+    }))
 
     const handleLike = (tweetId, currentLikes, isCurrentlyLiked) => {
         console.log(tweetId, currentLikes, isCurrentlyLiked)
 
         const updatedLikes = isCurrentlyLiked ? currentLikes - 1 : currentLikes + 1
         const updatedIsLiked = !isCurrentlyLiked
-
-        console.log(updatedLikes, updatedIsLiked)
-
         dispatch(updateLikes({ tweetId, updatedLikes, isLiked: updatedIsLiked}))
     }
 
@@ -46,8 +55,8 @@ export default function Tweet() {
                             <div className="tweet-header">
                                 <div className="user-details">
                                     <span className="user-name">{tweet.user.name}</span>
-                                    <span className="user-handles">{tweet.user.handle}</span>   
-                                    <span className="tweet-timestamp">{tweet.timeStamp}</span>                             
+                                    <span className="user-handles">{tweet.user.handle}</span>
+                                    <span className="tweet-timestamp">{tweet.timeStamp}</span>
                                 </div>
                                 <div className="tweet-menu">
                                     <CiMenuKebab />

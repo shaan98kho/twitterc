@@ -8,7 +8,7 @@ import {
   createRoutesFromElements
 } from "react-router-dom";
 
-import Tweets from "./components/Tweets/Tweets";
+import Tweets, {loader as tweetsLoader} from "./components/Tweets/Tweets";
 import MainLayout, { loader as mainLayoutLoader } from './components/Layout/MainLayout';
 import ContentLayout from './components/Layout/ContentLayout';
 import Explore from './pages/Explore';
@@ -16,7 +16,7 @@ import Explore from './pages/Explore';
 const router = createBrowserRouter(createRoutesFromElements(
               <Route element={<MainLayout />} loader={mainLayoutLoader}>
                   <Route element={<ContentLayout />}>
-                    <Route path="/" element={<Tweets />} loader={()=> ({})}/>
+                    <Route path="/" element={<Tweets />} loader={tweetsLoader}/>
                     <Route path="/search" element={<Explore />} loader={()=> ({})}/>
                   </Route>
               </Route>
